@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script src="./static/qmsg.js"></script>
+<link href="./static/qmsg.css" rel="stylesheet">
+    <title>随机美女-ZYYO原创</title>
+    <style>
+        /* 去除链接的默认下划线，设置链接颜色为黑色 */
+        a:hover,
+        a:link,
+        a:visited,
+        a:active,
+        a:focus ，
+        #selectOption{
+            text-decoration: none;
+            color: #000000;
+        }
+
+        /* 去除按钮和输入框的默认样式 */
+        button,
+        input,
+        input:focus ,
+        #selectOption{
+            outline: none;
+            border: none;
+        }
+
+        /* 去除链接、按钮和输入框的点击高亮效果 */
+        a,
+        button,
+        input {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        /* 设置整个页面的样式，使用flex布局垂直水平居中 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+
+            background: linear-gradient(60deg, #ffffff, #94d0ff);
+            color: #fff;
+            /* 使用模糊效果 */
+            backdrop-filter: blur(100px);
+        }
+
+        /* 默认容器样式 */
+        #infor {
+             border-radius: 40px;
+            box-shadow: 0 0 40px rgb(0 51 203 / 50%);
+            width: 45vh;
+            height: 30vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 30px;
+            background: linear-gradient(45deg, #20fff2, #8100ff);
+        }
+
+        /* 视频容器样式 */
+        #video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 92vw;
+            height: 80vh;
+  
+        }
+
+        /* 视频样式，占满父容器 */
+        video {
+            border-radius: 30px;
+            box-shadow: 0 0 40px rgb(0 51 203 / 50%);
+            max-width: 100%;
+           max-height: 100%;
+        }
+
+        /* 按钮样式 */
+        #start,
+        #blog-button,
+        #select-button
+        {
+            margin-top: 30px;
+            height: 52px;
+            width: 90px;
+            background-color: #0043ff;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 33px;
+            cursor: pointer;
+        }
+        #selectOption{
+        
+            height: 50px;
+            width: 80px;
+            background-color: #0043ff;
+            color: #fff;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 33px;
+            cursor: pointer;
+        }
+       
+      
+       
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- 视频容器 -->
+    <div id="video-container">
+        <!-- 默认提示信息 -->
+        <div  id="infor">随机美女视频</div>
+        <!-- 视频元素，初始时隐藏 -->
+        <video style="display: none" id="video"></video>
+    </div>
+    <!-- 按钮区域 -->
+    <div style="display:flex;gap:20px">
+        <!-- 播放按钮 -->
+        <button  id="start" onclick="Start()">开始播放</button>
+        <!-- 播放下一个按钮 -->
+        <!-- 跳转到博客按钮 -->
+
+      <button style="display: none" id="select-button">
+    <select id="selectOption">
+        
+        <option value="https://api.qoc.cc/api/xjj">自己找接口</option>
+    </select>
+    </button>
+    </div>
+   
+    <!-- JavaScript 代码 -->
+      <script>
+      Qmsg.config({
+    showClose:true,
+    timeout:500
+})
+            var video = document.getElementById('video');
+            var start = document.getElementById('start');
+            var infor = document.getElementById('infor');
+            var selectOption = document.getElementById('selectOption'); 
+            var selectbutton = document.getElementById('select-button');
+            video.preload = 'metadata';
+            video.poster = 'a.jpg';
+            video.src = selectOption.value; 
+            video.addEventListener('ended', function () {
+                  Start();
+            });
+
+            selectOption.addEventListener('change', function () {
+                   
+                value = selectOption.value;
+                video.src = value;
+                 Start();
+              
+            });
+
+        function Start() {
+            Qmsg.success("加载成功");
+            start.innerHTML = "下一个";
+            infor.style.display = 'none';
+            selectbutton.style.display = 'block';
+            video.style.display = 'block';
+            video.load();
+            video.play().then(function () {}).catch(function (error) {
+                console.error('不允许自动播放:', error);
+            });
+        }
+
+     
+document.onkeydown = function (e) {
+            if (e.key === "F12") {
+                return false;
+            }
+        };
+
+        document.body.oncontextmenu = function () {
+            self.event.returnValue = false
+        };
+        
+
+      
+    </script>
+</body>
+
+</html>
